@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>User Detail</title>
+    <link rel="stylesheet" href="{% static 'css/viewstyle.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>User Detail</h1>
+        <p><strong>Username:</strong> {{ user.username }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>First Name:</strong> {{ user.first_name }}</p>
+        <p><strong>Last Name:</strong> {{ user.last_name }}</p>
+        <p><strong>CI:</strong> {{ user.ci }}</p>
+        <p><strong>Age:</strong> {{ user.edad }}</p>
+        <p><strong>Num telf:</strong> {{ user.numtelefonico }}</p>
+        <!-- Añade otros campos del usuario que desees mostrar -->
+        <!-- Enlace para editar el usuario -->
+        <a href="{% url 'user_edit' user_id=user.id %}" class="edit-button">Editar</a>
+    </div>
+</body>
+</html>
+
+
+

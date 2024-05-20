@@ -1,0 +1,16 @@
+.card {
+    margin-top: 50px;
+}
+
+.card-title {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.card-text {
+    font-size: 18px;
+}
+
+.cancel-button {
+    margin-left: 10px;
+}
