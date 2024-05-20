@@ -1,7 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, render, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, CustomUserForm  # Importa el formulario de edición de usuario
+from .models import CustomUser
+
 
 def login_view(request):
     if request.method == 'POST':
@@ -34,3 +36,39 @@ def register_view(request):
 
 def home_view(request):
     return render(request, 'accounts/home.html')
+
+def user_list(request):
+    users = CustomUser.objects.all()
+    return render(request, 'user/user_list.html', {'users': users})
+
+def user_detail(request, user_id):
+    user = get_object_or_404(CustomUser, pk=user_id)
+    return render(request, 'user/user_detail.html', {'user': user})
+
+def user_edit(request, user_id):
+    user = get_object_or_404(CustomUser, pk=user_id)
+    if request.method == 'POST':
+        form = CustomUserForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('user_detail', user_id=user.id)
+    else:
+        form = CustomUserForm(instance=user)
+    return render(request, 'user/user_edit.html', {'form': form})
+
+def user_delete(request, user_id):
+    user = get_object_or_404(CustomUser, pk=user_id)
+    if request.method == 'POST':
+        user.delete()
+        return redirect('user_list')  # Redirigir a la lista de usuarios después de eliminar
+    return render(request, 'user/user_confirm_delete.html', {'user': user})
+
+def user_create(request):
+    if request.method == 'POST':
+        form = CustomUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('user_list')  # Redirigir a la lista de usuarios después de crear uno nuevo
+    else:
+        form = CustomUserForm()
+    return render(request, 'user/user_create.html', {'form': form})

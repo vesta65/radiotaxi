@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/listve.css' %}">
+    <meta charset="UTF-8">
+    <title>List of Vehicles</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+</head>
+<body>
+    <div class="container">
+        <h1>List of Vehicles</h1>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Placa</th>
+                    <th>Modelo</th>
+                    <th>Año</th>
+                    <th>Estado</th>
+                    <th>Tipo</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for vehicle in vehicles %}
+                <tr>
+                    <td>{{ vehicle.num_placa }}</td>
+                    <td>{{ vehicle.modelo }}</td>
+                    <td>{{ vehicle.ano }}</td>
+                    <td>{{ vehicle.estado }}</td>
+                    <td>{{ vehicle.tipo }}</td>
+                    <td class="actions">
+                        <a href="{% url 'user_detail' user_id=vehicle.user.id %}" class="btn btn-info btn-sm">Ver Detalles</a>
+                        <a href="{% url 'vehicle_edit' vehicle_id=vehicle.id %}" class="btn btn-primary btn-sm">Editar</a>
+                        <a href="{% url 'vehicle_delete' vehicle_id=vehicle.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

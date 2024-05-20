@@ -1,0 +1,54 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+}
+
+p {
+    margin-bottom: 20px;
+    color: #666;
+}
+
+button, .cancel-button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 0 10px;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button {
+    background-color: #dc3545; /* Color de fondo rojo */
+}
+
+button:hover {
+    background-color: #c82333; /* Color de fondo rojo oscuro al pasar el ratón */
+}
+
+.cancel-button {
+    background-color: #007bff; /* Color de fondo azul */
+}
+
+.cancel-button:hover {
+    background-color: #0056b3; /* Color de fondo azul oscuro al pasar el ratón */
+}
